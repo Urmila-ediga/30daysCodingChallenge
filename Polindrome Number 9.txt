@@ -1,0 +1,24 @@
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        o=x
+        s=[]
+        if x<0:
+            return False
+        while o>0:
+            r=o%10
+            s.append(r)
+            o=o//10
+        re=0
+        for d in s:
+            re=re*10+d
+        return re==x 
+#s=str(x) return s==s[::-1]
+
+
+
+            
+            
+            
+        
+
+        
