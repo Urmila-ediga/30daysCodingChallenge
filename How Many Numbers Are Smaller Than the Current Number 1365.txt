@@ -1,0 +1,10 @@
+class Solution:
+    def smallerNumbersThanCurrent(self, nums: List[int]) -> List[int]:
+        sorted_nums = sorted(nums)
+        rank = {}
+        i = 0
+        while i < len(sorted_nums):
+            if sorted_nums[i] not in rank:
+                rank[sorted_nums[i]] = i
+            i += 1
+        return [rank[n] for n in nums]
