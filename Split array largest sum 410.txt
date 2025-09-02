@@ -1,0 +1,22 @@
+from typing import List
+
+class Solution:
+    def splitArray(self, nums: List[int], m: int) -> int:
+        def can(limit):
+            parts = 1
+            cur = 0
+            for x in nums:
+                if cur + x > limit:
+                    parts += 1
+                    cur = 0
+                cur += x
+            return parts <= m
+
+        l, r = max(nums), sum(nums)
+        while l < r:
+            mid = (l + r) // 2
+            if can(mid):
+                r = mid
+            else:
+                l = mid + 1
+        return l
