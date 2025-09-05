@@ -1,0 +1,31 @@
+from typing import Optional
+
+class Node:
+    def __init__(self, x: int, next: 'Optional[Node]' = None, random: 'Optional[Node]' = None):
+        self.val = x
+        self.next = next
+        self.random = random
+
+class Solution:
+    def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
+        if not head:
+            return None
+        cur = head
+        while cur:
+            nxt = cur.next
+            cur.next = Node(cur.val, nxt)
+            cur = nxt
+        cur = head
+        while cur:
+            if cur.random:
+                cur.next.random = cur.random.next
+            cur = cur.next.next
+        dummy = Node(0)
+        copy_cur = dummy
+        cur = head
+        while cur:
+            copy_cur.next = cur.next
+            copy_cur = copy_cur.next
+            cur.next = cur.next.next
+            cur = cur.next
+        return dummy.next
